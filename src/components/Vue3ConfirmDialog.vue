@@ -11,6 +11,16 @@
           <span class="vc-text-grid">
             <h4 v-if="dialog.title" class="vc-title" v-html="dialog.title"></h4>
             <p v-if="dialog.message" class="vc-text" v-html="dialog.message"></p>
+            <!-- <p v-if="dialog.verification" class="vc-text" v-html="dialog.verification"></p> -->
+            <div v-if="dialog.verification">
+              <p class="vc-text">Type "{{ dialog.verification }}" below to confirm</p>
+              <input
+                v-model="dialogVerification"
+                :placeholder="dialog.verification"
+                class="vc-input"
+                autocomplete="off"
+              />
+            </div>
             <span v-if="dialog.auth">
               <input
                 v-focus
@@ -39,7 +49,7 @@
 
             <button
               v-if="dialog.button.yes"
-              :disabled="dialog.auth ? !password : false"
+              :disabled="dialog.auth ? !password : false || dialog.verification ? dialogVerification !== dialog.verification : false"
               @click.stop="e => handleClickButton(e, true)"
               class="vc-btn"
               type="button"
@@ -69,11 +79,13 @@ const Vue3DialogConfirm = {
     return {
       isShow: false,
       password: null,
+      dialogVerification: '',
       dialog: {
         auth: false,
         title: "",
         message: "",
-        button: {}
+        button: {},
+        verification: ""
       },
       params: {}
     }
@@ -86,6 +98,7 @@ const Vue3DialogConfirm = {
         title: "",
         message: "",
         button: {},
+        verification: "",
         callback: () => {}
       }
     },
