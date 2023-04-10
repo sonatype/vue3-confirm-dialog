@@ -11,9 +11,8 @@
           <span class="vc-text-grid">
             <h4 v-if="dialog.title" class="vc-title" v-html="dialog.title"></h4>
             <p v-if="dialog.message" class="vc-text" v-html="dialog.message"></p>
-            <!-- <p v-if="dialog.verification" class="vc-text" v-html="dialog.verification"></p> -->
             <div v-if="dialog.verification">
-              <p class="vc-text">Type "{{ dialog.verification }}" below to confirm</p>
+              <p class="vc-confirmation">Type "{{ dialog.verification }}" below to confirm</p>
               <input
                 v-model="dialogVerification"
                 :placeholder="dialog.verification"
