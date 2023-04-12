@@ -1,12 +1,12 @@
 {
   "name": "v3-confirm-dialog",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "type": "module",
-  "main": "dist/v3-confirm-dialog.js",
+  "main": "dist/vue3-confirm-dialog.js",
   "exports": {
     ".": {
-      "import": "./dist/v3-confirm-dialog.js",
-      "require": "./dist/v3-confirm-dialog.umd.cjs"
+      "import": "./dist/vue3-confirm-dialog.js",
+      "require": "./dist/vue3-confirm-dialog.umd.cjs"
     },
     "./style": "./dist/style.css"
   },
