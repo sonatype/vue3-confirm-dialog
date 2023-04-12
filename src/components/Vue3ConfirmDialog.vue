@@ -92,6 +92,7 @@ const Vue3DialogConfirm = {
   methods: {
     resetState() {
       this.password = null
+      this.dialogVerification = "" 
       this.dialog = {
         auth: false,
         title: "",
