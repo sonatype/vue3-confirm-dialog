@@ -53,7 +53,11 @@
               class="vc-btn"
               type="button"
             >
-              {{ dialog.button.yes }}
+              <span v-if="!this.isLoading">
+                {{ dialog.button.yes }}
+              </span>
+              <span v-else class="loading-btn">
+              </span>
             </button>
           </div>
         </div>
@@ -79,6 +83,7 @@ const Vue3DialogConfirm = {
       isShow: false,
       password: null,
       dialogVerification: '',
+      isLoading: false,
       dialog: {
         auth: false,
         title: "",
@@ -86,7 +91,7 @@ const Vue3DialogConfirm = {
         button: {},
         verification: ""
       },
-      params: {}
+      params: {},
     }
   },
   methods: {
@@ -105,10 +110,13 @@ const Vue3DialogConfirm = {
     handleClickButton({ target }, confirm) {
       if (target.id == "vueConfirm") return
       if (confirm && this.dialog.auth && !this.password) return
-      this.isShow = false
       // callback
+      this.isLoading = true;
       if (this.params.callback) {
-        this.params.callback(confirm, this.password)
+        this.params.callback(confirm, this.password).then(() => {
+          this.isShow = false
+          this.isLoading = false;
+        })
       }
     },
     handleClickOverlay({ target }) {
@@ -315,5 +323,17 @@ export default Vue3DialogConfirm
     opacity: 1;
     transform: scale3d(1, 1, 1);
   }
+}
+.loading-btn:after{
+    animation: spinAround 500ms infinite linear;
+    border: 2px solid #dbdbdb;
+    border-radius: 290486px;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    content: "";
+    display: block;
+    height: 1em;
+    position: relative;
+    width: 1em;
 }
 </style>
