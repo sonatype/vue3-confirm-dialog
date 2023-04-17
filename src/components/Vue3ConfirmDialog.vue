@@ -333,8 +333,7 @@ export default Vue3DialogConfirm
     content: "";
     display: block;
     height: 1em;
-    position: relative;
     width: 1em;
-    left: 50%;
+    margin: 0 auto;
 }
 </style>
