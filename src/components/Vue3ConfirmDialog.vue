@@ -335,5 +335,6 @@ export default Vue3DialogConfirm
     height: 1em;
     position: relative;
     width: 1em;
+    left: 50%;
 }
 </style>
