@@ -4,6 +4,7 @@
       v-if="isShow"
       @click="handleClickOverlay"
       class="vc-overlay"
+      v-bind:class="{ [params.customClass]: !!params.customClass, 'vc-overlay': true } "
       id="vueConfirm"
     >
       <transition name="zoom">
@@ -89,7 +90,8 @@ const Vue3DialogConfirm = {
         title: "",
         message: "",
         button: {},
-        verification: ""
+        verification: "",
+        customClass: ""
       },
       params: {},
     }
